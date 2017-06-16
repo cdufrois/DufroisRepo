@@ -1,4 +1,4 @@
-package dufrois;
+package dufrois.individuals;
 
 import java.util.ArrayList;
 
@@ -139,6 +139,9 @@ public class Team {
      * @return String representation of the team
      */
     public String toString() {
+        if (name.equals("Bye Match")) {
+            return name;
+        }
         return "Team " + name;
     }
 }

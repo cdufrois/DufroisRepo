@@ -1,4 +1,4 @@
-package dufrois;
+package dufrois.individuals;
 
 /**
  * A match between two teams
@@ -42,7 +42,7 @@ public class Match<T extends Team> {
      *            Match number
      */
     public Match(T t1, T t2, int matchNumber) {
-        if (t1.getName().equals("Bye Match")) {
+        /*if (t1.getName().equals("Bye Match")) {
             isByeMatch = true;
             team1 = t2;
             team2 = t1;
@@ -50,11 +50,11 @@ public class Match<T extends Team> {
             isByeMatch = true;
             team1 = t1;
             team2 = t2;
-        } else {
+        } else {*/
             isByeMatch = false;
             team1 = t1;
             team2 = t2;
-        }
+        //}
         score1 = 0;
         score2 = 0;
         matchNum = matchNumber;
@@ -172,7 +172,7 @@ public class Match<T extends Team> {
             builder.append(": ");
         }
         builder.append(team1.toString());
-        if (team2.getName().equals("Bye Match")) {
+        if (!isByeMatch) {
             builder.append(" vs ");
             builder.append(team2.toString());
         } else {

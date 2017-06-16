@@ -1,4 +1,6 @@
-package dufrois;
+package dufrois.tournaments;
+
+import dufrois.individuals.Team;
 
 /**
  * Interface for all kinds of tournaments
@@ -9,7 +11,7 @@ package dufrois;
  *            extends Team> Kinds of objects that can take part in the
  *            tournament
  */
-public interface Tournament<T extends Team> {
+public interface TournamentInterface<T extends Team> {
     
     /**
      * Get the Team at the given location

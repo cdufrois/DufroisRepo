@@ -1,7 +1,10 @@
-package dufrois;
+package dufrois.tournaments;
 
 import java.util.ArrayList;
 import java.util.Random;
+
+import dufrois.individuals.Match;
+import dufrois.individuals.Team;
 
 /**
  * A tournament in a round robin format
@@ -9,10 +12,9 @@ import java.util.Random;
  * @author Christian Dufrois
  * @version 2017.04.17
  *
- * @param <T>
- *            Generic type that is a team
+ * @param <T> Generic type that is a team
  */
-public class RoundRobinTourn<T extends Team> implements Tournament<T> {
+public class RoundRobinTourn<T extends Team> implements TournamentInterface<T> {
     
     private ArrayList<T> teams;
     private String name;
@@ -24,10 +26,8 @@ public class RoundRobinTourn<T extends Team> implements Tournament<T> {
     /**
      * Constructor for the round robin tournament format
      * 
-     * @param name
-     *            Name identifier for the tournament
-     * @param rnThrghs
-     *            Number
+     * @param name Name identifier for the tournament
+     * @param rnThrghs Number
      */
     public RoundRobinTourn(String name, int rnThrghs) {
         started = false;
@@ -49,8 +49,7 @@ public class RoundRobinTourn<T extends Team> implements Tournament<T> {
     /**
      * The team at the given index
      * 
-     * @param index
-     *            The index of the team to return
+     * @param index The index of the team to return
      * @return The team at the given index
      */
     @Override
@@ -81,10 +80,8 @@ public class RoundRobinTourn<T extends Team> implements Tournament<T> {
     /**
      * Add a team to the tournament
      * 
-     * @param team
-     *            The team to be added
-     * @throws TournamentStartedException
-     *             If the tournament has already started
+     * @param team The team to be added
+     * @throws TournamentStartedException If the tournament has already started
      */
     @Override
     public void addTeam(T team) throws TournamentStartedException {
@@ -98,11 +95,9 @@ public class RoundRobinTourn<T extends Team> implements Tournament<T> {
     /**
      * Remove the team from the tournament
      * 
-     * @param team
-     *            Team to be removed
+     * @param team Team to be removed
      * @return If the team was found and removed
-     * @throws TournamentStartedException
-     *             If the tournament has already started
+     * @throws TournamentStartedException If the tournament has already started
      */
     public boolean removeTeam(T team) throws TournamentStartedException {
         if (started) {
@@ -137,7 +132,6 @@ public class RoundRobinTourn<T extends Team> implements Tournament<T> {
         
         randomizeTeams();
         
-        int numTeams = teams.size();
         int wpr = numTeams - 1; // Weeks per round
         int mpw = numTeams / 2; // Matches per week
         games = new ArrayList<Match<T>[]>(runThroughs * wpr);
@@ -165,8 +159,10 @@ public class RoundRobinTourn<T extends Team> implements Tournament<T> {
      */
     private void randomizeTeams() {
         Random rand = new Random();
-        for (int i = 0; i < getNumTeams(); i++) {
-            int num = rand.nextInt(getNumTeams() - i);
+        for (int i = 0; i < getNumTeams() - 1; i++) { // Go through list of teams
+            
+            int num = rand.nextInt(numTeams - i); // Random number between 0 and last index
+            System.out.println("" + num + " | " + (numTeams - i));
             if (i != num) {
                 T temp = teams.get(num);
                 teams.set(num, teams.get(i));
@@ -184,7 +180,7 @@ public class RoundRobinTourn<T extends Team> implements Tournament<T> {
         }
         
         T temp = teams.get(teams.size() - 1);
-        for (int i = 2; i < teams.size(); i++) {
+        for (int i = teams.size() - 1; i > 1; i--) {
             teams.set(i, teams.get(i - 1));
         }
         teams.set(1, temp);
@@ -193,10 +189,8 @@ public class RoundRobinTourn<T extends Team> implements Tournament<T> {
     /**
      * Get the match at the given week and position
      * 
-     * @param week
-     *            The week of the tournament
-     * @param pos
-     *            The position in the week for the match
+     * @param week The week of the tournament
+     * @param pos The position in the week for the match
      * @return The match at the given values
      */
     public Match<T> getMatch(int week, int pos) {
@@ -204,8 +198,8 @@ public class RoundRobinTourn<T extends Team> implements Tournament<T> {
     }
     
     /**
-     * Returns a string representation of all the matches If the tournament
-     * hasn't started, it returns the name of the tournament
+     * Returns a string representation of all the matches If the tournament hasn't started, it returns the name of the
+     * tournament
      * 
      * @return String representation of the tournament
      */

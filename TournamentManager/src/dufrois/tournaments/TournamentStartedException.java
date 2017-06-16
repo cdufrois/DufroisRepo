@@ -1,4 +1,4 @@
-package dufrois;
+package dufrois.tournaments;
 
 /**
  * An exception that is thrown when the tournament has already started

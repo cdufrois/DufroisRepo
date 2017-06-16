@@ -1,4 +1,4 @@
-package dufrois;
+package dufrois.individuals;
 
 /**
  * A player that plays on a team in a tournament lol
