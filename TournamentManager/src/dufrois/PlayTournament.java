@@ -30,7 +30,7 @@ public class PlayTournament {
         } catch (TournamentStartedException e) {
         }
         
-        tourn.toString();
+        System.out.println(tourn.toString());
     }
     
 }
