@@ -140,9 +140,10 @@ public class RoundRobinTourn<T extends Team> implements TournamentInterface<T> {
         for (int r = 0; r < runThroughs; r++) { // Each round
             for (int w = 0; w < wpr; w++) { // Each week
                 
-                Match<T>[] week = new Match[mpw];
-                for (int m = 0; m < mpw; m++) {
-                    int matchNum = (r * wpr) + (w * mpw) + (m + 1);
+                Match<T>[] week = new Match[mpw]; // Array of matches
+                for (int m = 0; m < mpw; m++) { // Each match
+                    
+                    int matchNum = (r * wpr * mpw) + (w * mpw) + (m + 1); // Correct number based on which round, 
                     week[m] = new Match<T>(teams.get(m), teams.get(numTeams - m - 1), matchNum);
                 }
                 
@@ -162,7 +163,7 @@ public class RoundRobinTourn<T extends Team> implements TournamentInterface<T> {
         for (int i = 0; i < getNumTeams() - 1; i++) { // Go through list of teams
             
             int num = rand.nextInt(numTeams - i); // Random number between 0 and last index
-            System.out.println("" + num + " | " + (numTeams - i));
+            // System.out.println("" + num + " | " + (numTeams - i));
             if (i != num) {
                 T temp = teams.get(num);
                 teams.set(num, teams.get(i));
@@ -214,12 +215,12 @@ public class RoundRobinTourn<T extends Team> implements TournamentInterface<T> {
         for (int r = 0; r < runThroughs; r++) { // Each round
             builder.append("\nRun Through ");
             builder.append(r + 1);
-            for (int w = 0; w < teams.size() - 1; w++) { // Each week
+            for (int w = 0; w < numTeams - 1; w++) { // Each week
                 builder.append("\n  Week ");
-                builder.append(r * (teams.size() - 1) + w + 1);
+                builder.append(r * (numTeams - 1) + w + 1);
                 
-                Match<T>[] week = games.get(w);
-                for (Match<T> match : week) {
+                Match<T>[] week = games.get(r * (numTeams - 1) + w);
+                for (Match<T> match : week) { // Each match
                     builder.append("\n    ");
                     builder.append(match.toString());
                 }
