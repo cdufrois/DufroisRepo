@@ -7,17 +7,15 @@ import dufrois.individuals.Team;
  * 
  * @author Christian Dufrois
  *
- * @param <T
- *            extends Team> Kinds of objects that can take part in the
- *            tournament
+ * @param <T extends Team> Kinds of objects that can take part in the tournament
  */
-public interface TournamentInterface<T extends Team> {
+public interface TournamentInterface<T extends Team>
+{
     
     /**
      * Get the Team at the given location
      * 
-     * @param index
-     *            The location of the Team
+     * @param index The location of the Team
      * @return The team at the location
      */
     public T getTeam(int index);
@@ -32,17 +30,22 @@ public interface TournamentInterface<T extends Team> {
     /**
      * Add a team to the tournament
      * 
-     * @param team
-     *            The team to be added
-     * @throws TournamentStartedException
-     *             If the tournament has already started
+     * @param team The team to be added
+     * @throws TournamentStartedException If the tournament has already started
      */
     public void addTeam(T team) throws TournamentStartedException;
     
     /**
-     * 
+     * Creates the matches and allows the the matches to be played
      * 
      * @throws TournamentStartedException
      */
     public void startTournament() throws TournamentStartedException;
+    
+    /**
+     * Has the tournament started
+     * 
+     * @return Whether the tournament has started or not
+     */
+    public boolean hasTournamentStarted();
 }

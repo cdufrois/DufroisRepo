@@ -6,16 +6,19 @@ package dufrois.tournaments;
  * @author Christian Dufrois
  * @version 2017.04.27
  */
-public class TournamentStartedException extends Exception {
+public class TournamentStartedException extends Exception
+{
     
     private static final long serialVersionUID = 1L;
     private String message;
     
-    public TournamentStartedException() {
+    public TournamentStartedException()
+    {
         this("Tournament has already begun");
     }
     
-    public TournamentStartedException(String msg) {
+    public TournamentStartedException(String msg)
+    {
         message = msg;
     }
     

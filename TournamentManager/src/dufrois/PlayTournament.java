@@ -4,10 +4,13 @@ import dufrois.individuals.Team;
 import dufrois.tournaments.RoundRobinTourn;
 import dufrois.tournaments.TournamentStartedException;
 
-public class PlayTournament {
+public class PlayTournament
+{
     
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         
+        // Make teams
         Team team1 = new Team("1");
         Team team2 = new Team("2");
         Team team3 = new Team("3");
@@ -16,8 +19,10 @@ public class PlayTournament {
         Team team6 = new Team("6");
         Team team7 = new Team("7");
         
+        // Add teams to tournament
         RoundRobinTourn<Team> tourn = new RoundRobinTourn<Team>("Test Tournament", 2);
-        try {
+        try
+        {
             tourn.addTeam(team1);
             tourn.addTeam(team2);
             tourn.addTeam(team3);
@@ -25,13 +30,19 @@ public class PlayTournament {
             tourn.addTeam(team5);
             tourn.addTeam(team6);
             tourn.addTeam(team7);
-        } catch (TournamentStartedException e) {
+        }
+        catch (TournamentStartedException e)
+        {
             // Tournament all ready started
         }
         
-        try {
+        // Start tournament
+        try
+        {
             tourn.startTournament();
-        } catch (TournamentStartedException e) {
+        }
+        catch (TournamentStartedException e)
+        {
         }
         
         System.out.println(tourn.toString());

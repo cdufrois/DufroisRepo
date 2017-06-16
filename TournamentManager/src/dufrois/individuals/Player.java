@@ -6,7 +6,8 @@ package dufrois.individuals;
  * @author Christian Dufrois
  * @version 2017.04.20
  */
-public class Player {
+public class Player
+{
     
     private String name;
     private int number;
@@ -14,12 +15,11 @@ public class Player {
     /**
      * Constructor for the player
      * 
-     * @param playerName
-     *            The player's name
-     * @param num
-     *            The player's personal number
+     * @param playerName The player's name
+     * @param num The player's personal number
      */
-    public Player(String playerName, int num) {
+    public Player(String playerName, int num)
+    {
         name = playerName;
         number = num;
     }
@@ -29,7 +29,8 @@ public class Player {
      * 
      * @return Name of the player
      */
-    public String getName() {
+    public String getName()
+    {
         return name;
     }
     
@@ -38,27 +39,28 @@ public class Player {
      * 
      * @return Number of the player
      */
-    public int getNumber() {
+    public int getNumber()
+    {
         return number;
     }
     
     /**
      * Give the player a new name
      * 
-     * @param newName
-     *            A new name for the player
+     * @param newName A new name for the player
      */
-    public void setName(String newName) {
+    public void setName(String newName)
+    {
         name = newName;
     }
     
     /**
      * Give the player a new number
      * 
-     * @param newNum
-     *            A new number for the player
+     * @param newNum A new number for the player
      */
-    public void setNumber(int newNum) {
+    public void setNumber(int newNum)
+    {
         number = newNum;
     }
 }
