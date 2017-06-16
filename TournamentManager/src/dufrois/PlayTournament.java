@@ -4,13 +4,13 @@ public class PlayTournament {
     
     public static void main(String[] args) {
         
-        Team team1 = new Team("Team 1");
-        Team team2 = new Team("Team 2");
-        Team team3 = new Team("Team 3");
-        Team team4 = new Team("Team 4");
-        Team team5 = new Team("Team 5");
-        Team team6 = new Team("Team 6");
-        Team team7 = new Team("Team 7");
+        Team team1 = new Team("1");
+        Team team2 = new Team("2");
+        Team team3 = new Team("3");
+        Team team4 = new Team("4");
+        Team team5 = new Team("5");
+        Team team6 = new Team("6");
+        Team team7 = new Team("7");
         
         RoundRobinTourn<Team> tourn = new RoundRobinTourn<Team>("Test Tournament", 2);
         try {
@@ -25,6 +25,12 @@ public class PlayTournament {
             // Tournament all ready started
         }
         
+        try {
+            tourn.startTournament();
+        } catch (TournamentStartedException e) {
+        }
+        
+        tourn.toString();
     }
     
 }

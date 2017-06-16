@@ -203,11 +203,16 @@ public class RoundRobinTourn<T extends Team> implements Tournament<T> {
     
     /**
      * Returns a string representation of all the matches
+     * If the tournament hasn't started, it returns the name of the tournament
      * 
      * @return String representation of the tournament
      */
     @Override
     public String toString() {
+        if (!started) {
+            return "Tournament " + name;
+        }
+        
         StringBuilder builder = new StringBuilder(name);
         
         for (int r = 0; r < runThroughs; r++) { // Each round

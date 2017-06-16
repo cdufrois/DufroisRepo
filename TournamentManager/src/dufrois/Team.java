@@ -133,4 +133,12 @@ public class Team {
         players.add(newPlayer);
     }
     
+    /**
+     * The name of the team
+     * 
+     * @return String representation of the team
+     */
+    public String toString() {
+        return "Team " + name;
+    }
 }
