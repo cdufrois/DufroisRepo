@@ -38,14 +38,25 @@ public class Match<T extends Team>
      */
     public Match(T t1, T t2, int matchNumber)
     {
-        /*
-         * if (t1.getName().equals("Bye Match")) { isByeMatch = true; team1 = t2; team2 = t1; } else if
-         * (t2.getName().equals("Bye Match")) { isByeMatch = true; team1 = t1; team2 = t2; } else {
-         */
-        isByeMatch = false;
-        team1 = t1;
-        team2 = t2;
-        // }
+        
+        if (t1.getName().equals("Bye Match"))
+        {
+            isByeMatch = true;
+            team1 = t2;
+            team2 = t1;
+        }
+        else if (t2.getName().equals("Bye Match"))
+        {
+            isByeMatch = true;
+            team1 = t1;
+            team2 = t2;
+        }
+        else
+        {
+            isByeMatch = false;
+            team1 = t1;
+            team2 = t2;
+        }
         score1 = 0;
         score2 = 0;
         matchNum = matchNumber;
@@ -164,6 +175,7 @@ public class Match<T extends Team>
     @Override
     public String toString()
     {
+        // Header
         StringBuilder builder = new StringBuilder();
         if (matchNum != -1)
         {
@@ -171,16 +183,19 @@ public class Match<T extends Team>
             builder.append(matchNum);
             builder.append(": ");
         }
+        // Team one
         builder.append(team1.toString());
+        // Connection
         if (!isByeMatch)
         {
             builder.append(" vs ");
-            builder.append(team2.toString());
         }
         else
         {
-            builder.append(" has bye match");
+            builder.append(" has a ");
         }
+        // Team two
+        builder.append(team2.toString());
         
         return builder.toString();
     }

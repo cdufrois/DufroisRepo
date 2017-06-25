@@ -17,8 +17,9 @@ public interface TournamentInterface<T extends Team>
      * 
      * @param index The location of the Team
      * @return The team at the location
+     * @throws IndexOutOfBoundsException if index is too large or below zero
      */
-    public T getTeam(int index);
+    public T getTeam(int index) throws IndexOutOfBoundsException;
     
     /**
      * Put all the Teams into array form

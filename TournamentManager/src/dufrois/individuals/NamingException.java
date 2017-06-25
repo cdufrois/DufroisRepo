@@ -15,4 +15,9 @@ public class NamingException extends Exception
     {
         message = msg;
     }
+    
+    public String getMessage()
+    {
+        return message;
+    }
 }

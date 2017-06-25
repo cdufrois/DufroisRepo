@@ -22,4 +22,8 @@ public class TournamentStartedException extends Exception
         message = msg;
     }
     
+    public String getMessage()
+    {
+        return message;
+    }
 }
