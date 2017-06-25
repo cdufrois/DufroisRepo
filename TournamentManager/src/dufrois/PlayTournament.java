@@ -20,7 +20,7 @@ public class PlayTournament
         Team team7 = new Team("7");
         
         // Add teams to tournament
-        RoundRobinTourn<Team> tourn = new RoundRobinTourn<Team>(team1.getClass(), "Test Tournament", 2);
+        RoundRobinTourn<Team> tourn = new RoundRobinTourn<Team>(team1.getClass(), "Test", 2);
         try
         {
             tourn.addTeam(team1);

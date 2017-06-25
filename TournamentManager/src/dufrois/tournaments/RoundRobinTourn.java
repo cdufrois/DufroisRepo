@@ -144,9 +144,7 @@ public class RoundRobinTourn<T extends Team> implements TournamentInterface<T>
             teams.addTeam((T) new Team("Bye Match"));
             numTeams++;
         }
-        System.out.println(teams.toString());
         randomizeTeams();
-        System.out.println(teams.toString());
         
         int wpr = numTeams - 1; // Weeks per round
         int mpw = numTeams / 2; // Matches per week
@@ -189,7 +187,6 @@ public class RoundRobinTourn<T extends Team> implements TournamentInterface<T>
         {
             // Random number between 0 and last index
             int num = rand.nextInt(i + 1);
-            System.out.println("" + num + " | 0 - " + (i + 1));
             
             if (i != num)
             {
@@ -239,7 +236,7 @@ public class RoundRobinTourn<T extends Team> implements TournamentInterface<T>
     @Override
     public String toString()
     {
-        StringBuilder builder = new StringBuilder("Tournament ");
+        StringBuilder builder = new StringBuilder("Tournament: ");
         builder.append(name);
         if (!started)
         {
