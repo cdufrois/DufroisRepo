@@ -99,8 +99,9 @@ public class Team
      * 
      * @param index Index of the player to get
      * @return The player at the given index
+     * @throws IndexOutOfBoundsException Index is out of range
      */
-    public Player getPlayer(int index)
+    public Player getPlayer(int index) throws IndexOutOfBoundsException
     {
         return players.get(index);
     }
@@ -133,6 +134,17 @@ public class Team
     public void addPlayer(Player newPlayer)
     {
         players.add(newPlayer);
+    }
+    
+    /**
+     * Remove the player from the team
+     * 
+     * @param player Player to be removed
+     * @return The player being removed
+     */
+    public boolean removePlayer(Player player)
+    {
+        return players.remove(player);
     }
     
     /**
