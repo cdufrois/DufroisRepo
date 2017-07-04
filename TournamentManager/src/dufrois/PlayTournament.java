@@ -1,5 +1,7 @@
 package dufrois;
 
+import dufrois.individuals.PingPongTeam;
+import dufrois.individuals.Player;
 import dufrois.individuals.Team;
 import dufrois.tournaments.RoundRobinTourn;
 import dufrois.tournaments.TournamentStartedException;
