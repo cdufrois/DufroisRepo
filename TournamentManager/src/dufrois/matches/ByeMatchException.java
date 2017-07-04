@@ -1,4 +1,4 @@
-package dufrois.individuals;
+package dufrois.matches;
 
 public class ByeMatchException extends Exception
 {

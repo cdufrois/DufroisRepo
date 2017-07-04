@@ -1,11 +1,13 @@
-package dufrois.individuals;
+package dufrois.matches;
+
+import dufrois.individuals.Team;
 
 /**
  * A match between two teams
  * 
  * @author Christian Dufrois
  *
- * @param <T>
+ * @param <T> The kind of team that plays the match
  */
 public class Match<T extends Team>
 {
