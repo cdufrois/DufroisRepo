@@ -10,6 +10,9 @@ public class PlayerTest
     private Player me;
     private Player her;
     
+    /**
+     * Add more comments
+     */
     @Before
     public void setUp()
     {
