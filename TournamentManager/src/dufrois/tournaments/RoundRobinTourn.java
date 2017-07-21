@@ -93,7 +93,7 @@ public class RoundRobinTourn<T extends Team> implements TournamentInterface<T>
     {
         if (started)
         {
-            throw new TournamentStartedException();
+            throw new TournamentStartedException("Adding a team when tournament started");
         }
         teams.addTeam(team);
     }

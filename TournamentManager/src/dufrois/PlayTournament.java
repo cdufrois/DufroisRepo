@@ -48,6 +48,7 @@ public class PlayTournament
         }
         
         System.out.println(tourn.toString());
+        
     }
     
 }
