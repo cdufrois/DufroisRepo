@@ -1,6 +1,6 @@
 package dufrois.tournaments;
 
-import dufrois.individuals.Team;
+import dufrois.teams.Team;
 
 /**
  * Interface for all kinds of tournaments

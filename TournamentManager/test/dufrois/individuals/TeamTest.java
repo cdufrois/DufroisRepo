@@ -5,6 +5,9 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import dufrois.common.Player;
+import dufrois.teams.Team;
+
 public class TeamTest
 {
     private Team one;

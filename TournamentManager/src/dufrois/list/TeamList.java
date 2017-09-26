@@ -2,7 +2,7 @@ package dufrois.list;
 
 import java.lang.reflect.Array;
 
-import dufrois.individuals.Team;
+import dufrois.teams.Team;
 
 public class TeamList<T extends Team>
 {

@@ -1,8 +1,12 @@
-package dufrois;
+package dufrois.gui;
 
-import dufrois.individuals.PingPongTeam;
-import dufrois.individuals.Player;
-import dufrois.individuals.Team;
+import java.awt.Color;
+
+import javax.swing.JFrame;
+
+import dufrois.common.Player;
+import dufrois.teams.PingPongTeam;
+import dufrois.teams.Team;
 import dufrois.tournaments.RoundRobinTourn;
 import dufrois.tournaments.TournamentStartedException;
 
@@ -11,7 +15,17 @@ public class PlayTournament
     
     public static void main(String[] args)
     {
-        
+        JFrame frame = new JFrame("Tournament Manager");
+        frame.setLocation(WindowVars.FRAME_LEFT, WindowVars.FRAME_TOP);
+        frame.setSize(WindowVars.WIDTH, WindowVars.HEIGHT);
+        // frame.setBackground(Color.WHITE);
+        frame.setContentPane(new HomePanel(frame));
+        frame.setFocusable(true);
+        frame.setVisible(true);
+    }
+    
+    private void helper()
+    {
         // Make teams
         Team team1 = new Team("1");
         Team team2 = new Team("2");

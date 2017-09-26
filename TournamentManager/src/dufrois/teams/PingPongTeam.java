@@ -1,4 +1,6 @@
-package dufrois.individuals;
+package dufrois.teams;
+
+import dufrois.common.Player;
 
 public class PingPongTeam extends Team
 {

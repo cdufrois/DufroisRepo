@@ -1,4 +1,4 @@
-package dufrois.individuals;
+package dufrois.common;
 
 public class NamingException extends Exception
 {

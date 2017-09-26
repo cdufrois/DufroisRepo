@@ -3,9 +3,9 @@ package dufrois.tournaments;
 import java.util.ArrayList;
 import java.util.Random;
 
-import dufrois.individuals.Team;
 import dufrois.list.TeamList;
 import dufrois.matches.Match;
+import dufrois.teams.Team;
 
 /**
  * A tournament in a round robin format

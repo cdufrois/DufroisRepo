@@ -1,6 +1,6 @@
 package dufrois.matches;
 
-import dufrois.individuals.Team;
+import dufrois.teams.Team;
 
 /**
  * A match between two teams

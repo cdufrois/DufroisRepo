@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import dufrois.individuals.Team;
+import dufrois.teams.Team;
 import dufrois.tournaments.RoundRobinTourn;
 
 public class RoundRobinTournTest

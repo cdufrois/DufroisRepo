@@ -1,6 +1,8 @@
-package dufrois.individuals;
+package dufrois.teams;
 
 import java.util.ArrayList;
+
+import dufrois.common.Player;
 
 /**
  * A group of players that compete in tournaments
