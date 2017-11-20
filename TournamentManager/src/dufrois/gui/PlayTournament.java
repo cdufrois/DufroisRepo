@@ -10,6 +10,12 @@ import dufrois.teams.Team;
 import dufrois.tournaments.RoundRobinTourn;
 import dufrois.tournaments.TournamentStartedException;
 
+/**
+ * 
+ * 
+ * @author Christian Dufrois
+ * @version 25.09.2017
+ */
 public class PlayTournament
 {
     
@@ -18,7 +24,7 @@ public class PlayTournament
         JFrame frame = new JFrame("Tournament Manager");
         frame.setLocation(WindowVars.FRAME_LEFT, WindowVars.FRAME_TOP);
         frame.setSize(WindowVars.WIDTH, WindowVars.HEIGHT);
-        // frame.setBackground(Color.WHITE);
+        frame.setBackground(Color.WHITE);
         frame.setContentPane(new HomePanel(frame));
         frame.setFocusable(true);
         frame.setVisible(true);

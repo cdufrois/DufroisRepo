@@ -1,5 +1,11 @@
 package dufrois.gui;
 
+/**
+ * Constants used throughout the program in order to keep consistency
+ * 
+ * @author Christian Dufrois
+ * @version 25.09.2017
+ */
 public class WindowVars
 {
     /**
@@ -17,17 +23,21 @@ public class WindowVars
     
     public static final int FRAME_TOP = 50;
     
-    public static final int WIDTH = 1200;
+    public static final int WIDTH = 1000;
     
-    public static final int HEIGHT = 700;
+    public static final int HEIGHT = 600;
     
     public static final int BUTTON_HEIGHT = 25;
     
-    public static int getUsableWidth() {
+    public static final int BUTTON_WIDTH = 100;
+    
+    public static int getUsableWidth()
+    {
         return WIDTH - (2 * X_BORDER_BUFFER) - NONUSABLE_WIDTH;
     }
     
-    public static int getUsableHeight() {
+    public static int getUsableHeight()
+    {
         return HEIGHT - (2 * Y_BORDER_BUFFER) - NONUSABLE_HEIGHT;
     }
 }

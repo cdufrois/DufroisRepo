@@ -1,16 +1,22 @@
 package dufrois.common;
 
+/**
+ * 
+ * 
+ * @author Christian Dufrois
+ * @version 25.09.2017
+ */
 public enum TournTypeEnum
 {
     /**
      * A single match
      */
-    MATCH ("Single Match"),
+    MATCH("Single Match"),
     
     /**
      * Round robin tournament: every team plays every other team
      */
-    ROUNDROBIN ("Round Robin");
+    ROUNDROBIN("Round Robin");
     
     private String value;
     

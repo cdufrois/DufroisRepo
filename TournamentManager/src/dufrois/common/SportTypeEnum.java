@@ -1,20 +1,26 @@
 package dufrois.common;
 
-public enum GameTypeEnum
+/**
+ * 
+ * 
+ * @author Christian Dufrois
+ * @version 25.09.2017
+ */
+public enum SportTypeEnum
 {
     /**
      * A standard bare bones game
      */
-    BASIC ("Simple"),
+    BASIC("Simple"),
     
     /**
      * A ping pong game
      */
-    PINGPONG ("Ping Pong");
+    PINGPONG("Ping Pong");
     
-private String value;
+    private String value;
     
-    private GameTypeEnum(String strVal)
+    private SportTypeEnum(String strVal)
     {
         value = strVal;
     }
@@ -26,7 +32,7 @@ private String value;
     
     public static String[] getStringValues()
     {
-        GameTypeEnum[] obs = GameTypeEnum.values();
+        SportTypeEnum[] obs = SportTypeEnum.values();
         String[] str = new String[obs.length];
         
         for (int i = 0; i < obs.length; i++)

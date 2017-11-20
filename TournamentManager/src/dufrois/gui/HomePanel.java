@@ -6,7 +6,7 @@ import java.awt.Font;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.DefaultComboBoxModel;
-import dufrois.common.GameTypeEnum;
+import dufrois.common.SportTypeEnum;
 import dufrois.common.TournTypeEnum;
 
 import java.awt.Color;
@@ -16,6 +16,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 
+/**
+ * 
+ * 
+ * @author Christian Dufrois
+ * @version 25.09.2017
+ */
 public class HomePanel extends JPanel
 {
     
@@ -23,7 +29,7 @@ public class HomePanel extends JPanel
     private int usableWidth;
     private int usableHeight;
     private int dropDownMenuWidth;
-    private Color background = Color.LIGHT_GRAY;
+    private Color background = Color.WHITE;
     private Color foreground = Color.BLACK;
     
     /**
@@ -35,16 +41,17 @@ public class HomePanel extends JPanel
         usableWidth = WindowVars.getUsableWidth();
         usableHeight = WindowVars.getUsableHeight();
         dropDownMenuWidth = 250;
-
-        System.out.println("Usable Width: " + usableWidth + "\nWindow Width: " + WindowVars.WIDTH + "\nUsable Height: " + usableHeight + "\nWindow Height: " + WindowVars.HEIGHT);
         
-        setBackground(Color.WHITE);
+        System.out.println("Usable Width: " + usableWidth + "\nWindow Width: " + WindowVars.WIDTH + "\nUsable Height: "
+                + usableHeight + "\nWindow Height: " + WindowVars.HEIGHT);
+        
+        setBackground(background);
         setLayout(null);
         
         /*
-         * Create the top section
-         * The label, sport type selector, and tournament type selector
+         * Create the top section The label, sport type selector, and tournament type selector
          */
+        int spacer = 20; // Space between lines
         int titleWidth = 400; // Make size dependent
         int titleHeight = 48; // Make size dependent
         
@@ -62,27 +69,31 @@ public class HomePanel extends JPanel
         // Create the game type selector
         int boxHeight = WindowVars.BUTTON_HEIGHT;
         
-        JComboBox<String> selectGameType = new JComboBox<String>();
-        selectGameType.setFont(new Font("SansSerif", Font.PLAIN, 12));
-        selectGameType.setBackground(background);
-        selectGameType.setForeground(foreground);
-        selectGameType.setModel(new DefaultComboBoxModel<String>(GameTypeEnum.getStringValues()));
+        JComboBox<String> selectSport = new JComboBox<String>();
+        selectSport.setFont(new Font("SansSerif", Font.PLAIN, 12));
+        selectSport.setBackground(background);
+        selectSport.setForeground(foreground);
+        selectSport.setModel(new DefaultComboBoxModel<String>(SportTypeEnum.getStringValues()));
         
         int xValSelect = usableWidth / 2 - dropDownMenuWidth / 2 + WindowVars.X_BORDER_BUFFER;
-        int yValSelect = yValTitle + titleHeight;// + 10;//usableHeight / 2 - boxHeight / 2 + WindowVars.Y_BORDER_BUFFER;
-        selectGameType.setBounds(xValSelect, yValSelect, dropDownMenuWidth, boxHeight);
-        add(selectGameType);
+        int yValSelect = yValTitle + titleHeight + spacer;// + 10;//usableHeight / 2 - boxHeight / 2 + WindowVars.Y_BORDER_BUFFER;
+        selectSport.setBounds(xValSelect, yValSelect, dropDownMenuWidth, boxHeight);
+        add(selectSport);
         
         // Create tournament type selector
-        JComboBox<String> selectTournType = new JComboBox<String>();
-        selectTournType.setFont(new Font("SansSerif", Font.PLAIN, 12));
-        selectTournType.setBackground(background);
-        selectTournType.setForeground(foreground);
-        selectTournType.setModel(new DefaultComboBoxModel<String>(TournTypeEnum.getStringValues()));
+        JComboBox<String> selectTourn = new JComboBox<String>();
+        selectTourn.setFont(new Font("SansSerif", Font.PLAIN, 12));
+        selectTourn.setBackground(background);
+        selectTourn.setForeground(foreground);
+        selectTourn.setModel(new DefaultComboBoxModel<String>(TournTypeEnum.getStringValues()));
         
-        selectGameType.setBounds(xValSelect, yValSelect + 2 * boxHeight, dropDownMenuWidth, boxHeight);
-        add(selectTournType);
+        yValSelect = yValSelect + boxHeight + spacer;
+        selectTourn.setBounds(xValSelect, yValSelect, dropDownMenuWidth, boxHeight);
+        add(selectTourn);
         
+        /*
+         * Navigation bar at bottom
+         */
         // Create the next button
         int nextWidth = 100;
         
@@ -94,7 +105,7 @@ public class HomePanel extends JPanel
             {
                 frame.setContentPane(new JPanel());
                 frame.setVisible(true);
-                GameTypeEnum gameType = (GameTypeEnum) selectGameType.getSelectedItem();
+                SportTypeEnum gameType = (SportTypeEnum) selectSport.getSelectedItem();
                 switch (gameType) {
                 case PINGPONG:
                     frame.setTitle("Ping Pong");
@@ -113,6 +124,11 @@ public class HomePanel extends JPanel
         int yValNext = usableHeight - WindowVars.BUTTON_HEIGHT + WindowVars.Y_BORDER_BUFFER;
         nextButton.setBounds(xValNext, yValNext, nextWidth, WindowVars.BUTTON_HEIGHT);
         add(nextButton);
+        
+        
+        SavedTournaments list = new SavedTournaments(this);
+        list.setBounds(300, 300, 800, 100);
+        add(list);
         
     }
 }
