@@ -9,14 +9,14 @@ package dufrois.common;
 public enum SportTypeEnum
 {
     /**
-     * A standard bare bones game
-     */
-    BASIC("Simple"),
-    
-    /**
      * A ping pong game
      */
-    PINGPONG("Ping Pong");
+    PINGPONG("Ping Pong"),
+    
+    /**
+     * A standard bare bones game
+     */
+    BASIC("Basic");
     
     private String value;
     
@@ -30,7 +30,13 @@ public enum SportTypeEnum
         return value;
     }
     
-    public static String[] getStringValues()
+    /*
+     * Class variables / methods
+     */
+    
+    private static String[] values = SportTypeEnum.makeStrArr();
+    
+    private static String[] makeStrArr()
     {
         SportTypeEnum[] obs = SportTypeEnum.values();
         String[] str = new String[obs.length];
@@ -41,5 +47,29 @@ public enum SportTypeEnum
         }
         
         return str;
+    }
+    
+    public static String[] getStringValues()
+    {
+        String[] str = new String[values.length];
+        
+        for (int i = 0; i < str.length; i++)
+        {
+            str[i] = values[i];
+        }
+        
+        return str;
+    }
+    
+    public static SportTypeEnum getEnum(String str)
+    {
+        for (int i = 0; i < values.length; i++)
+        {
+            if (str == values[i])
+            {
+                return SportTypeEnum.values()[i];
+            }
+        }
+        return null;
     }
 }

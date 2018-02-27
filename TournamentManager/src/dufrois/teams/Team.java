@@ -3,6 +3,7 @@ package dufrois.teams;
 import java.util.ArrayList;
 
 import dufrois.common.Player;
+import dufrois.matches.ByeMatchException;
 
 /**
  * A group of players that compete in tournaments
@@ -73,6 +74,8 @@ public class Team
      */
     public String getName()
     {
+        if (name.equals(ByeMatchException.BYE_MATCH_NAME))
+            return "Bye Match";
         return name;
     }
     
@@ -139,6 +142,17 @@ public class Team
     }
     
     /**
+     * Set the player at this index to the new player if there are already that many players
+     * 
+     * @param index Location to set the new player to
+     * @param newPlayer The new player that will be set
+     */
+    protected void setPlayer(int index, Player newPlayer)
+    {
+        players.set(index, newPlayer);
+    }
+    
+    /**
      * Remove the player from the team
      * 
      * @param player Player to be removed
@@ -150,15 +164,25 @@ public class Team
     }
     
     /**
+     * Get an array with all the players on the team
+     * 
+     * @return An array with all the players
+     */
+    public Player[] getPlayers()
+    {
+        return players.toArray(new Player[0]);
+    }
+    
+    /**
      * The name of the team
      * 
      * @return String representation of the team
      */
     public String toString()
     {
-        if (name.equals("Bye Match"))
+        if (name.equals(ByeMatchException.BYE_MATCH_NAME))
         {
-            return name;
+            return "Bye Match";
         }
         return "Team " + name;
     }

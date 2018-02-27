@@ -30,7 +30,13 @@ public enum TournTypeEnum
         return value;
     }
     
-    public static String[] getStringValues()
+    /*
+     * Class variables / methods
+     */
+    
+    private static String[] values = TournTypeEnum.makeStrArr();
+    
+    private static String[] makeStrArr()
     {
         TournTypeEnum[] obs = TournTypeEnum.values();
         String[] str = new String[obs.length];
@@ -41,5 +47,29 @@ public enum TournTypeEnum
         }
         
         return str;
+    }
+    
+    public static String[] getStringValues()
+    {
+        String[] str = new String[values.length];
+        
+        for (int i = 0; i < str.length; i++)
+        {
+            str[i] = values[i];
+        }
+        
+        return str;
+    }
+    
+    public static TournTypeEnum getEnum(String str)
+    {
+        for (int i = 0; i < values.length; i++)
+        {
+            if (str == values[i])
+            {
+                return TournTypeEnum.values()[i];
+            }
+        }
+        return null;
     }
 }

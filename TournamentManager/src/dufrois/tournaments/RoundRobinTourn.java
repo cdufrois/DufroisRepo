@@ -3,8 +3,9 @@ package dufrois.tournaments;
 import java.util.ArrayList;
 import java.util.Random;
 
-import dufrois.list.TeamList;
+import dufrois.common.SportTypeEnum;
 import dufrois.matches.Match;
+import dufrois.matches.MatchOrganizer;
 import dufrois.teams.Team;
 
 /**
@@ -15,14 +16,15 @@ import dufrois.teams.Team;
  *
  * @param <T> Generic type that is a team
  */
-public class RoundRobinTourn<T extends Team> implements TournamentInterface<T>
+public class RoundRobinTourn implements TournamentInterface
 {
     
-    private TeamList<T> teams;
+    private TeamList teams;
     private String name;
     private int runThroughs;
     private boolean started;
-    private ArrayList<Match<T>[]> games;
+    private ArrayList<MatchOrganizer[]> games;
+    private SportTypeEnum sport;
     
     /**
      * Constructor for the round robin tournament format
@@ -30,12 +32,13 @@ public class RoundRobinTourn<T extends Team> implements TournamentInterface<T>
      * @param name Name identifier for the tournament
      * @param rnThrghs Number
      */
-    public RoundRobinTourn(Class<? extends Team> class1, String name, int rnThrghs)
+    public RoundRobinTourn(SportTypeEnum s, String name, int rnThrghs)
     {
-        started = false;
-        teams = new TeamList<T>(class1);
-        runThroughs = rnThrghs;
+        sport = s;
         this.name = name;
+        runThroughs = rnThrghs;
+        teams = new TeamList(sport);
+        started = false;
     }
     
     /**
@@ -56,7 +59,7 @@ public class RoundRobinTourn<T extends Team> implements TournamentInterface<T>
      * @throws IndexOutOfBoundsException if index is too large or below zero
      */
     @Override
-    public T getTeam(int index) throws IndexOutOfBoundsException
+    public Team getTeam(int index) throws IndexOutOfBoundsException
     {
         return teams.getTeam(index);
     }
@@ -67,7 +70,7 @@ public class RoundRobinTourn<T extends Team> implements TournamentInterface<T>
      * @return An array of all the teams
      */
     @Override
-    public T[] getTeams()
+    public Team[] getTeams()
     {
         return teams.toArray();
     }
@@ -89,13 +92,13 @@ public class RoundRobinTourn<T extends Team> implements TournamentInterface<T>
      * @throws TournamentStartedException If the tournament has already started
      */
     @Override
-    public void addTeam(T team) throws TournamentStartedException
+    public boolean addTeam(Team team) throws TournamentStartedException
     {
         if (started)
         {
             throw new TournamentStartedException("Adding a team when tournament started");
         }
-        teams.addTeam(team);
+        return teams.addTeam(team);
     }
     
     /**
@@ -105,7 +108,7 @@ public class RoundRobinTourn<T extends Team> implements TournamentInterface<T>
      * @return The team being removed
      * @throws TournamentStartedException If the tournament has already started
      */
-    public T removeTeam(T team) throws TournamentStartedException
+    public Team removeTeam(Team team) throws TournamentStartedException
     {
         if (started)
         {
@@ -114,6 +117,11 @@ public class RoundRobinTourn<T extends Team> implements TournamentInterface<T>
         return teams.removeTeam(team);
     }
     
+    /**
+     * Has the tournament started
+     * 
+     * @return Whether the tournament has started or not
+     */
     public boolean hasTournamentStarted()
     {
         return started;
@@ -124,7 +132,6 @@ public class RoundRobinTourn<T extends Team> implements TournamentInterface<T>
      * 
      * @throws TournamentStartedException
      */
-    @SuppressWarnings("unchecked")
     @Override
     public void startTournament() throws TournamentStartedException
     {
@@ -141,31 +148,31 @@ public class RoundRobinTourn<T extends Team> implements TournamentInterface<T>
         // Assure even number of teams
         if (numTeams % 2 == 1)
         {
-            teams.addTeam((T) new Team("Bye Match"));
+            teams.addTeam(MatchOrganizer.getByeMatchTeam(sport));
             numTeams++;
         }
-        randomizeTeams();
         
-        int wpr = numTeams - 1; // Weeks per round
-        int mpw = numTeams / 2; // Matches per week
-        games = new ArrayList<Match<T>[]>(runThroughs * wpr);
+        int weeksPerRound = numTeams - 1; // Weeks per round
+        int matchesPerWeek = numTeams / 2; // Matches per week
+        games = new ArrayList<MatchOrganizer[]>(runThroughs * weeksPerRound);
         
         // Create all the matches
         // Each round
         for (int r = 0; r < runThroughs; r++)
         {
+            randomizeTeams();
             // Each week
-            for (int w = 0; w < wpr; w++)
+            for (int w = 0; w < weeksPerRound; w++)
             {
                 // Each match
-                Match<T>[] week = new Match[mpw]; // Array of matches
-                for (int m = 0; m < mpw; m++)
+                MatchOrganizer[] week = new MatchOrganizer[matchesPerWeek]; // Array of matches
+                for (int m = 0; m < matchesPerWeek; m++)
                 {
                     // Correct number based on which round, week, and match
-                    int matchNum = (r * wpr * mpw) + (w * mpw) + (m + 1);
-                    T tOne = (T) teams.getTeam(m);
-                    T tTwo = (T) teams.getTeam(numTeams - m - 1);
-                    week[m] = new Match<T>(tOne, tTwo, matchNum);
+                    int matchNum = (r * weeksPerRound * matchesPerWeek) + (w * matchesPerWeek) + (m + 1);
+                    Team tOne = teams.getTeam(m);
+                    Team tTwo = teams.getTeam(numTeams - m - 1);
+                    week[m] = new MatchOrganizer(sport, tOne, tTwo, false, matchNum);
                 }
                 
                 games.add(week);
@@ -190,7 +197,7 @@ public class RoundRobinTourn<T extends Team> implements TournamentInterface<T>
             
             if (i != num)
             {
-                T temp = teams.getTeam(num);
+                Team temp = teams.getTeam(num);
                 teams.setTeam(num, teams.getTeam(i));
                 teams.setTeam(i, temp);
             }
@@ -207,7 +214,7 @@ public class RoundRobinTourn<T extends Team> implements TournamentInterface<T>
             return;
         }
         
-        T temp = teams.getTeam(teams.getSize() - 1);
+        Team temp = teams.getTeam(teams.getSize() - 1);
         for (int i = teams.getSize() - 1; i > 1; i--)
         {
             teams.setTeam(i, teams.getTeam(i - 1));
@@ -222,9 +229,9 @@ public class RoundRobinTourn<T extends Team> implements TournamentInterface<T>
      * @param pos The position in the week for the match
      * @return The match at the given values
      */
-    public Match<T> getMatch(int week, int pos)
+    public Match<? extends Team> getMatch(int week, int pos)
     {
-        return games.get(week)[pos];
+        return games.get(week)[pos].getMatch();
     }
     
     /**
@@ -240,7 +247,7 @@ public class RoundRobinTourn<T extends Team> implements TournamentInterface<T>
         builder.append(name);
         if (!started)
         {
-            for (T team : teams.toArray())
+            for (Team team : teams.toArray())
             {
                 builder.append("\n");
                 builder.append(team.toString());
@@ -258,8 +265,8 @@ public class RoundRobinTourn<T extends Team> implements TournamentInterface<T>
                     builder.append("\n  Week ");
                     builder.append(r * (numTeams - 1) + w + 1);
                     
-                    Match<T>[] week = games.get(r * (numTeams - 1) + w);
-                    for (Match<T> match : week) // Each match
+                    MatchOrganizer[] week = games.get(r * (numTeams - 1) + w);
+                    for (MatchOrganizer match : week) // Each match
                     {
                         builder.append("\n    ");
                         builder.append(match.toString());

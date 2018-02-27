@@ -1,4 +1,4 @@
-package dufrois.gui;
+package dufrois.gui.home;
 
 import java.awt.Color;
 import java.awt.Font;
