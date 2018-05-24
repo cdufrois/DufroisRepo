@@ -52,7 +52,8 @@ public class PlayerTest
         assertTrue(3 == her.getNumber());
     }
     
-    @Test
+    @SuppressWarnings("unlikely-arg-type")
+	@Test
     public void testEquals()
     {
         // Same object

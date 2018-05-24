@@ -8,22 +8,22 @@ package dufrois.tournaments;
  */
 public class TournamentStartedException extends Exception
 {
-    
-    private static final long serialVersionUID = 1L;
-    private String message;
-    
-    public TournamentStartedException()
-    {
-        this("Tournament has already begun");
-    }
-    
-    public TournamentStartedException(String msg)
-    {
-        message = msg;
-    }
-    
-    public String getMessage()
-    {
-        return message;
-    }
+	
+	private static final long serialVersionUID = 1L;
+	private String message;
+	
+	public TournamentStartedException()
+	{
+		this("Tournament has already begun");
+	}
+	
+	public TournamentStartedException(String msg)
+	{
+		message = msg;
+	}
+	
+	public String getMessage()
+	{
+		return message;
+	}
 }
