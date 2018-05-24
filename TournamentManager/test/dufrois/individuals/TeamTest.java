@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import dufrois.common.Player;
-import dufrois.teams.Team;
+import dufrois.common.Team;
 
 public class TeamTest
 {
