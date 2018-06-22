@@ -6,7 +6,7 @@ package dufrois.tournaments;
  * @author Christian Dufrois
  * @version 25.09.2017
  */
-public enum TournTypeEnum
+public enum TournamentTypeEnum
 {
 	/**
 	 * A single match
@@ -20,7 +20,7 @@ public enum TournTypeEnum
 	
 	private String value;
 	
-	private TournTypeEnum(String strVal)
+	private TournamentTypeEnum(String strVal)
 	{
 		value = strVal;
 	}
@@ -34,11 +34,11 @@ public enum TournTypeEnum
 	 * Class variables / methods
 	 */
 	
-	private static String[] values = TournTypeEnum.makeStrArr();
+	private static String[] values = TournamentTypeEnum.makeStrArr();
 	
 	private static String[] makeStrArr()
 	{
-		TournTypeEnum[] obs = TournTypeEnum.values();
+		TournamentTypeEnum[] obs = TournamentTypeEnum.values();
 		String[] str = new String[obs.length];
 		
 		for (int i = 0; i < obs.length; i++)
@@ -61,13 +61,13 @@ public enum TournTypeEnum
 		return str;
 	}
 	
-	public static TournTypeEnum getEnum(String str)
+	public static TournamentTypeEnum getEnum(String str)
 	{
 		for (int i = 0; i < values.length; i++)
 		{
 			if (str == values[i])
 			{
-				return TournTypeEnum.values()[i];
+				return TournamentTypeEnum.values()[i];
 			}
 		}
 		return null;

@@ -15,7 +15,7 @@ import javax.swing.SwingConstants;
 import dufrois.common.*;
 import dufrois.pingpong.PingPongTeam;
 import dufrois.tournaments.RoundRobinTourn;
-import dufrois.tournaments.TournTypeEnum;
+import dufrois.tournaments.TournamentTypeEnum;
 import dufrois.tournaments.TournamentStartedException;
 
 /**
@@ -87,7 +87,7 @@ public class HomePanel extends JPanel
 		selectTourn.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		selectTourn.setBackground(WindowVars.BACKGROUND_COLOR);
 		selectTourn.setForeground(WindowVars.FOREGROUND_COLOR);
-		selectTourn.setModel(new DefaultComboBoxModel<String>(TournTypeEnum.getStringValues()));
+		selectTourn.setModel(new DefaultComboBoxModel<String>(TournamentTypeEnum.getStringValues()));
 		
 		int labelWidth = WindowVars.COMBOBOX_WIDTH;
 		int labelX = (usableWidth / 2) - labelWidth + WindowVars.X_BORDER_BUFFER; // Left of center
@@ -130,7 +130,7 @@ public class HomePanel extends JPanel
 	{
 		public void actionPerformed(ActionEvent arg0)
 		{
-			TournTypeEnum tournType = TournTypeEnum.getEnum((String) selectTourn.getSelectedItem());
+			TournamentTypeEnum tournType = TournamentTypeEnum.getEnum((String) selectTourn.getSelectedItem());
 			SportTypeEnum sport = SportTypeEnum.getEnum((String) selectSport.getSelectedItem());
 			switch (tournType) {// Should be doing stuff through the tourn type and passing in game type
 			case MATCH:
@@ -144,7 +144,7 @@ public class HomePanel extends JPanel
 				frame.setVisible(true);
 				break;
 			default:
-				frame.setTitle(TournTypeEnum.MATCH.toString());
+				frame.setTitle(TournamentTypeEnum.MATCH.toString());
 				frame.setVisible(true);
 				break;
 			}
