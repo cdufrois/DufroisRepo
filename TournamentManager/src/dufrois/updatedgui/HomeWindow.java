@@ -1,4 +1,4 @@
-package updatedgui;
+package dufrois.updatedgui;
 
 import javax.swing.JPanel;
 import java.awt.Color;
